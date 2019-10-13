@@ -9,9 +9,11 @@ function userinput(inputElement) {
     api("files/dumbuth/dumbuth.php", "mainframe", "checkname", {name: inputElement.value}, (success, result, error) => {
         if (success) {
             user = result;
+            get("username-next").removeAttribute("disabled");
             get("username-valid").innerText = "V";
         } else {
             get("username-valid").innerText = "X";
+            get("username-next").setAttribute("disabled", "");
         }
     });
 }
