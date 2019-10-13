@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.Random;
 
 public class Main {
 
@@ -26,11 +27,14 @@ public class Main {
                 lootshells.add(new Lootshell(connectionSocket));
             }
         } catch (Exception ignored) {
-
         }
     }
 
     private static class Lootshell {
+
+        private static final String NAME = "l00t";
+        private static final String ELEVATED_HEADER = ":#>";
+        private static final String NON_ELEVATED_HEADER = ":$>";
 
         // ID
         private String id;
@@ -45,11 +49,17 @@ public class Main {
         private boolean running = true;
 
         // Auth
+        private boolean elevated = false;
         private boolean authenticated = false;
         private String user = null;
         private String password = null;
 
+        // UI
+        private boolean header = true;
+
+
         Lootshell(Socket socket) {
+            id = random(10);
             thread = new Thread(() -> {
                 try {
                     bin = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -70,23 +80,65 @@ public class Main {
         }
 
         private void welcome() {
-            transmitln("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            print("New shell");
+            transmitln("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
             transmitln("Welcome to the mainframe!");
             transmitln("We'll need you to authenticate.");
-            transmitln("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            transmitln("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
             transmit("name> ");
         }
 
         private void receive(String text) {
-            System.out.println(text);
             // Evaluate command
             if (authenticated) {
-                if (text.equals("hello")) {
-                    transmitln("Hi there");
-                } else if (text.equals("welcome")) {
-
+                Command command = new Command(text);
+                print("Exec '" + command.getCommand() + "'");
+                String[] args = command.getArguments();
+                switch (command.getCommand()) {
+                    case "hello": {
+                        if (args.length > 0) {
+                            String name = "";
+                            for (String arg : args) name += " " + arg;
+                            transmitln("Hi there," + name);
+                        } else {
+                            transmitln("Hi there!");
+                        }
+                        break;
+                    }
+                    case "welcome": {
+                        receive("hold-header");
+                        receive("clear");
+                        transmitln("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                        transmitln("Welcome to lootshell");
+                        transmitln("type 'help' to list all commands.");
+                        transmitln("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                        break;
+                    }
+                    case "hold-header": {
+                        header = false;
+                        break;
+                    }
+                    case "clear": {
+                        transmit("\033[2J\033[H");
+                        break;
+                    }
+                    case "elevate":{
+                        elevated = true;
+                        break;
+                    }
+                    case "exit": {
+                        receive("hold-header");
+                        running = false;
+                        break;
+                    }
+                    default: {
+                        transmitln(NAME + ": " + command.getCommand() + ": not handled");
+                    }
                 }
-                transmit("l00t:$> ");
+                if (header)
+                    transmit(NAME + (elevated ? ELEVATED_HEADER : NON_ELEVATED_HEADER) + " ");
+                if (!command.getCommand().equals("hold-header"))
+                    header = true;
             } else {
                 if (user == null) {
                     user = text;
@@ -104,6 +156,15 @@ public class Main {
             }
         }
 
+        private String random(int length) {
+            String chars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            char c = chars.charAt(new Random().nextInt(chars.length()));
+            if (length > 0) {
+                return c + random(length - 1);
+            }
+            return "";
+        }
+
         private void transmitln(String text) {
             transmit(text + "\n");
         }
@@ -114,6 +175,10 @@ public class Main {
                 bout.flush();
             } catch (Exception ignored) {
             }
+        }
+
+        private void print(String text) {
+            System.out.println(id + " - " + text);
         }
 
         private boolean authenticate(String user, String password) {
@@ -129,7 +194,8 @@ public class Main {
                 }
             } catch (Exception ignored) {
             }
-            return false;
+            // TODO change to false
+            return true;
         }
 
         private String duth_hash(String secret, String salt, int rounds) {
@@ -163,6 +229,26 @@ public class Main {
 
         public boolean isRunning() {
             return running;
+        }
+
+        private class Command {
+            private String command;
+            private String[] arguments;
+
+            Command(String text) {
+                String[] split = text.split(" ");
+                arguments = new String[split.length - 1];
+                command = split[0];
+                System.arraycopy(split, 1, arguments, 0, arguments.length);
+            }
+
+            public String getCommand() {
+                return command;
+            }
+
+            public String[] getArguments() {
+                return arguments;
+            }
         }
     }
 }

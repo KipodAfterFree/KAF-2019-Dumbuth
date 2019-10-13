@@ -1,8 +1,8 @@
 <?php
 
 $users = [];
-array_push($users, duth_user_create("nobody", random(7), random(32)));
-array_push($users, duth_user_create("admin", random(7), random(32)));
+array_push($users, duth_user_create("nobody", random(6), random(32)));
+array_push($users, duth_user_create("admin", random(6), random(32)));
 file_put_contents(__DIR__ . DIRECTORY_SEPARATOR . "users.json", json_encode($users));
 
 function duth_user_create($name, $password, $salt)
@@ -16,7 +16,7 @@ function duth_user_create($name, $password, $salt)
 
 function random($length)
 {
-    $current = str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz")[0];
+    $current = str_shuffle("abcdefghijklmnopqrstuvwxyz")[0];
     if ($length > 0) {
         return $current . random($length - 1);
     }
