@@ -12,7 +12,7 @@ RUN chown www-data /var/www/ -R
 # Change permissions of /var/www
 RUN chmod 775 /var/www/ -R
 # Run user creation script
-# TODO RUN php /var/www/html/files/dumbuth/private/setup.php
+RUN php /var/www/html/files/dumbuth/private/setup.php
 # Copy server.jar to /home/
 COPY java/out/server.jar /home/server.jar
 # Expose server port

@@ -15,7 +15,8 @@ import java.util.Random;
 
 public class Main {
 
-    private static final int PORT = 5387;
+    private static final int PORT = 5386;
+    //    private static final int PORT = 5387;
     private static final ArrayList<Lootshell> lootshells = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -57,6 +58,12 @@ public class Main {
         // UI
         private boolean header = true;
 
+        // Commands
+        private ArrayList<String> history = new ArrayList<>();
+
+        // Filesystem
+        private FileSystem filesystem;
+
 
         Lootshell(Socket socket) {
             id = random(10);
@@ -71,9 +78,11 @@ public class Main {
                         }
                         Thread.sleep(10);
                     }
+                    print("Destroyed");
                     socket.close();
                 } catch (Exception ignored) {
                 }
+                print("Stopped");
                 thread.stop();
             });
             thread.start();
@@ -88,13 +97,16 @@ public class Main {
             transmit("name> ");
         }
 
-        private void receive(String text) {
-            // Evaluate command
-            if (authenticated) {
+        private void execute(String text) {
+            if (text.length() > 0) {
+                history.add(text);
                 Command command = new Command(text);
                 print("Exec '" + command.getCommand() + "'");
                 String[] args = command.getArguments();
                 switch (command.getCommand()) {
+                    case "": {
+                        break;
+                    }
                     case "hello": {
                         if (args.length > 0) {
                             String name = "";
@@ -106,28 +118,41 @@ public class Main {
                         break;
                     }
                     case "welcome": {
-                        receive("hold-header");
-                        receive("clear");
+                        execute("clear");
                         transmitln("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                         transmitln("Welcome to lootshell");
                         transmitln("type 'help' to list all commands.");
                         transmitln("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                         break;
                     }
-                    case "hold-header": {
-                        header = false;
+                    case "help": {
+                        transmitln("List of all possible commands:");
+                        transmitln("hello   welcome     help");
+                        transmitln("history clear       elevate");
+                        transmitln("id      uname       whoami");
+                        transmitln("ln      fsstcr      chmod");
+                        transmitln("nc      shex        echo");
+                        transmitln("ls      cat         exit");
+                        transmitln("rerun   curl        find");
                         break;
                     }
+                    // Here go special commands
+                    case "history": {
+                        for (int i = 0; i < history.size(); i++) {
+                            transmitln(i + " - " + history.get(i));
+                        }
+                        break;
+                    }
+                    // Here end special commands
                     case "clear": {
                         transmit("\033[2J\033[H");
                         break;
                     }
-                    case "elevate":{
+                    case "elevate": {
                         elevated = true;
                         break;
                     }
                     case "exit": {
-                        receive("hold-header");
                         running = false;
                         break;
                     }
@@ -135,17 +160,24 @@ public class Main {
                         transmitln(NAME + ": " + command.getCommand() + ": not handled");
                     }
                 }
+            }
+        }
+
+        private void receive(String text) {
+            // Evaluate command
+            if (authenticated) {
+                execute(text);
                 if (header)
                     transmit(NAME + (elevated ? ELEVATED_HEADER : NON_ELEVATED_HEADER) + " ");
-                if (!command.getCommand().equals("hold-header"))
-                    header = true;
             } else {
                 if (user == null) {
                     user = text;
+                    print("Auth as " + user);
                     transmit("password> ");
                 } else {
                     password = text;
                     authenticated = authenticate(user, password);
+                    print("Auth " + (authenticated ? "OK" : "Failed"));
                     if (!authenticated) {
                         transmitln("Authentication failed");
                         running = false;
@@ -188,7 +220,7 @@ public class Main {
                 for (int i = 0; i < usersArray.length(); i++) {
                     JSONArray userArray = usersArray.getJSONArray(i);
                     if (userArray.getString(0).equals(user)) {
-                        if (userArray.getString(1).equals(duth_hash(password, userArray.getString(2), 100)))
+                        if (userArray.getString(1).equals(duth_hash(password, userArray.getString(2), 10)))
                             return true;
                     }
                 }
@@ -248,6 +280,19 @@ public class Main {
 
             public String[] getArguments() {
                 return arguments;
+            }
+        }
+
+        private class FileSystem{
+            private ArrayList<FSPath> paths=new ArrayList<>();
+
+            private class FSPath{
+                private int permission = 0;
+                private String name = "";
+                private FSPath parent = null;
+                private boolean isFile = false;
+                private ArrayList<FSPath> children = null;
+                private String contents = null;
             }
         }
     }

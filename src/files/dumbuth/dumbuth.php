@@ -34,7 +34,7 @@ api("mainframe", function ($action, $parameters) {
 
 echo json_encode($result);
 
-function duth_hash($secret, $salt, $rounds = 100)
+function duth_hash($secret, $salt, $rounds = 10)
 {
     if ($rounds === 0)
         return sha1($secret . $salt);
