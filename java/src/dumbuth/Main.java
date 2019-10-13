@@ -1,12 +1,16 @@
 package dumbuth;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import org.json.JSONArray;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Formatter;
 
 public class Main {
 
@@ -82,7 +86,7 @@ public class Main {
                 } else if (text.equals("welcome")) {
 
                 }
-                transmit("t1ny:$> ");
+                transmit("l00t:$> ");
             } else {
                 if (user == null) {
                     user = text;
@@ -113,7 +117,48 @@ public class Main {
         }
 
         private boolean authenticate(String user, String password) {
+            try {
+                String filecontents = Files.readAllLines(new File("/var/www/html/files/dumbuth/private/users.json").toPath()).get(0);
+                JSONArray usersArray = new JSONArray(filecontents);
+                for (int i = 0; i < usersArray.length(); i++) {
+                    JSONArray userArray = usersArray.getJSONArray(i);
+                    if (userArray.getString(0).equals(user)) {
+                        if (userArray.getString(1).equals(duth_hash(password, userArray.getString(2), 100)))
+                            return true;
+                    }
+                }
+            } catch (Exception ignored) {
+            }
             return false;
+        }
+
+        private String duth_hash(String secret, String salt, int rounds) {
+            if (rounds == 0)
+                return sha1(secret + salt);
+            return sha1(salt + duth_hash(secret, salt, rounds - 1));
+        }
+
+        private String sha1(String password) {
+            String sha1 = "";
+            try {
+                MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+                crypt.reset();
+                crypt.update(password.getBytes(StandardCharsets.UTF_8));
+                sha1 = byteToHex(crypt.digest());
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            return sha1;
+        }
+
+        private String byteToHex(final byte[] hash) {
+            Formatter formatter = new Formatter();
+            for (byte b : hash) {
+                formatter.format("%02x", b);
+            }
+            String result = formatter.toString();
+            formatter.close();
+            return result;
         }
 
         public boolean isRunning() {

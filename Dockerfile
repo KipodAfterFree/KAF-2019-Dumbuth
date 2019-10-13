@@ -11,11 +11,18 @@ COPY src /var/www/html
 RUN chown www-data /var/www/ -R
 # Change permissions of /var/www
 RUN chmod 775 /var/www/ -R
-# Copy server.jar to /home/
-COPY java/out/server.jar /home/server.jar
 # Run user creation script
 RUN php /var/www/html/files/dumbuth/private/setup.php
+# Copy server.jar to /home/
+COPY java/out/server.jar /home/server.jar
+# Expose server port
+EXPOSE 5387
+# Copy startup script
+COPY start.sh /start.sh
+RUN chmod 777 /start.sh
 # Enable mods
 RUN a2enmod headers
 # Restart webserver
 RUN service apache2 restart
+# Startup command
+CMD "/start.sh"
