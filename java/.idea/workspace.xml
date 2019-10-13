@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="460f6cc6-4e93-4b83-adb9-0d16dcacdc83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Exported_JAR.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Exported_JAR.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/server.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dumbuth/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dumbuth/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/files/dumbuth/private/setup.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/files/dumbuth/private/setup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/layouts/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/layouts/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/scripts/frontend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/scripts/frontend/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../start.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,14 +29,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="11" />
-          <entry key="java" value="3800" />
+          <entry key="java" value="6303" />
+          <entry key="txt" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="6" />
-          <entry key="JAVA" value="3800" />
-          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="JAVA" value="6303" />
+          <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -57,19 +59,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dumbuth/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="126" column="30" selection-start-line="126" selection-start-column="30" selection-end-line="126" selection-end-column="30" />
+            <state relative-caret-position="300">
+              <caret line="218" column="9" lean-forward="true" selection-start-line="211" selection-start-column="8" selection-end-line="218" selection-end-column="9" />
               <folding>
-                <element signature="e#5001#5002#0" expanded="true" />
-                <element signature="e#5046#5047#0" expanded="true" />
-                <element signature="e#5283#5284#0" expanded="true" />
-                <element signature="e#5344#5345#0" expanded="true" />
-                <element signature="e#7192#7193#0" expanded="true" />
-                <element signature="e#7230#7231#0" expanded="true" />
+                <element signature="e#6943#6944#0" expanded="true" />
+                <element signature="e#6988#6989#0" expanded="true" />
+                <element signature="e#7225#7226#0" expanded="true" />
+                <element signature="e#7286#7287#0" expanded="true" />
+                <element signature="e#9134#9135#0" expanded="true" />
+                <element signature="e#9172#9173#0" expanded="true" />
                 <element signature="e#5789#5790#0" expanded="true" />
                 <element signature="e#5835#5836#0" expanded="true" />
                 <element signature="e#5881#5882#0" expanded="true" />
                 <element signature="e#5929#5930#0" expanded="true" />
+                <element signature="e#12098#12099#0" expanded="true" />
+                <element signature="e#12154#12155#0" expanded="true" />
+                <element signature="e#12629#12630#0" expanded="true" />
+                <element signature="e#12684#12685#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -88,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/.idea/artifacts/Exported_JAR.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -112,7 +118,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="683" />
     <option name="width" value="683" />
     <option name="height" value="768" />
@@ -165,7 +171,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -217,12 +223,20 @@
       <option name="presentableId" value="Default" />
       <updated>1570965049667</updated>
       <workItem from="1570965052942" duration="4992000" />
-      <workItem from="1570970465465" duration="5732000" />
+      <workItem from="1570970465465" duration="14355000" />
     </task>
+    <task id="LOCAL-00001" summary="Progress">
+      <created>1570981314883</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570981314883</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10927000" />
+    <option name="totallyTimeSpent" value="19550000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="6" />
@@ -233,8 +247,8 @@
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32857144" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49848485" weight="0.32857144" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49166667" visible="true" weight="0.32857144" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -243,8 +257,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32857144" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5083333" side_tool="true" visible="true" weight="0.32857144" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49242425" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -259,36 +273,44 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="Progress" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/Exported_JAR.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dumbuth/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="126" column="30" selection-start-line="126" selection-start-column="30" selection-end-line="126" selection-end-column="30" />
+        <state relative-caret-position="300">
+          <caret line="218" column="9" lean-forward="true" selection-start-line="211" selection-start-column="8" selection-end-line="218" selection-end-column="9" />
           <folding>
-            <element signature="e#5001#5002#0" expanded="true" />
-            <element signature="e#5046#5047#0" expanded="true" />
-            <element signature="e#5283#5284#0" expanded="true" />
-            <element signature="e#5344#5345#0" expanded="true" />
-            <element signature="e#7192#7193#0" expanded="true" />
-            <element signature="e#7230#7231#0" expanded="true" />
+            <element signature="e#6943#6944#0" expanded="true" />
+            <element signature="e#6988#6989#0" expanded="true" />
+            <element signature="e#7225#7226#0" expanded="true" />
+            <element signature="e#7286#7287#0" expanded="true" />
+            <element signature="e#9134#9135#0" expanded="true" />
+            <element signature="e#9172#9173#0" expanded="true" />
             <element signature="e#5789#5790#0" expanded="true" />
             <element signature="e#5835#5836#0" expanded="true" />
             <element signature="e#5881#5882#0" expanded="true" />
             <element signature="e#5929#5930#0" expanded="true" />
+            <element signature="e#12098#12099#0" expanded="true" />
+            <element signature="e#12154#12155#0" expanded="true" />
+            <element signature="e#12629#12630#0" expanded="true" />
+            <element signature="e#12684#12685#0" expanded="true" />
           </folding>
         </state>
       </provider>
