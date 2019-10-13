@@ -1,12 +1,14 @@
 <?php
 
 include_once "api.php";
-include_once "lists.php";
+
+$users = json_decode(file_get_contents("private/users.json"));
 
 api("mainframe", function ($action, $parameters) {
+    global $users;
     if ($action === "checkname") {
         if (isset($parameters->name)) {
-            foreach (USERS as $user) {
+            foreach ($users as $user) {
                 if ($user[0] === $parameters->name)
                     return [true, $user];
             }
@@ -15,10 +17,10 @@ api("mainframe", function ($action, $parameters) {
         return [false, "Missing arguments"];
     } else if ($action === "checkpassword") {
         if (isset($parameters->name) && isset($parameters->password)) {
-            foreach (USERS as $user) {
+            foreach ($users as $user) {
                 if ($user[0] === $parameters->name)
                     if ($user[1] === duth_hash($parameters->password, $user[2])) {
-                        return [true, "<p>Authentication OK</p><!--For mainframe authentication use 'nc address:port/files/dumbuth/mainframe.php'-->"];
+                        return [true, "<p>Authentication OK</p><!--For mainframe authentication use 'nc address 5387'-->"];
                     } else {
                         return [false, null];
                     }
@@ -31,3 +33,10 @@ api("mainframe", function ($action, $parameters) {
 });
 
 echo json_encode($result);
+
+function duth_hash($secret, $salt, $rounds = 100)
+{
+    if ($rounds === 0)
+        return sha1($secret . $salt);
+    return sha1($salt . duth_hash($secret, $salt, $rounds - 1));
+}
