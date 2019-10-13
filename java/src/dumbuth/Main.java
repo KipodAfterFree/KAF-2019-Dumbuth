@@ -56,7 +56,6 @@ public class Main {
                             receive(bin.readLine());
                         }
                         Thread.sleep(10);
-
                     }
                     socket.close();
                 } catch (Exception ignored) {

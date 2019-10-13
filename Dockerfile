@@ -1,10 +1,20 @@
 FROM php:7.0-apache
+# Update package lists
+RUN apt-get update
+RUN mkdir -p /usr/share/man/man1
+# Install java
+RUN apt-get -y install openjdk-8-jre-headless ca-certificates-java --no-install-recommends --no-install-suggests
+# ENV JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 # Copy WebApp to /var/www/html
 COPY src /var/www/html
 # Change ownership of /var/www
 RUN chown www-data /var/www/ -R
 # Change permissions of /var/www
 RUN chmod 775 /var/www/ -R
+# Copy server.jar to /home/
+COPY java/ /home/
+# Run user creation script
+RUN php /var/www/html/files/dumbuth/private/setup.php
 # Enable mods
 RUN a2enmod headers
 # Restart webserver
