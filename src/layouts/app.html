@@ -1,0 +1,20 @@
+<div id="home" column>
+    <p>Mainframe authentication</p>
+    <p>Click authenticate to begin</p>
+    <button onclick="page('username');">Authenticate</button>
+</div>
+<div id="username" column>
+    <p>Enter your username</p>
+    <div row>
+        <input id="username-text" placeholder="Username" type="text" oninput="userinput(this)"/>
+        <p id="username-valid">-</p>
+    </div>
+    <button onclick="page('password');">Next</button>
+</div>
+<div id="password" column>
+    <p>Enter your password</p>
+    <input id="password-text" placeholder="Password" type="password" oninput="passwordinput(this)"/>
+</div>
+<div id="authenticated" column>
+    Waiting for server result
+</div>

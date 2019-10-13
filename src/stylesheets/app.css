@@ -1,0 +1,10 @@
+body {
+    background-color: #ffffff;
+    max-width: 460px;
+}
+
+/* App Style */
+
+#username-text{
+    width: 100%;
+}
