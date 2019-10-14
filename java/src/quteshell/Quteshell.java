@@ -22,7 +22,7 @@ public class Quteshell {
             new ls(),
             new ln(),
             new nc(),
-            new shellsalt(),
+            new sotp(),
             new shex(),
             new touch(),
             new wfile(),
@@ -35,8 +35,7 @@ public class Quteshell {
             new History(),
             new Rerun(),
             new ID(),
-            new Exit(),
-            new Test()
+            new Exit()
     };
 
     // Filesystem
@@ -235,7 +234,7 @@ public class Quteshell {
      *
      * @param input Input from the socket
      */
-    private void read(String input) {
+    public void read(String input) {
         execute(input);
         prompt();
     }

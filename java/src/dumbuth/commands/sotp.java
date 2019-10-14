@@ -8,19 +8,15 @@ import quteshell.commands.Help;
 import java.util.Random;
 
 @Elevation(2)
-@Help.Description("shellsalt creates the hash and salt for the (5 char) OTP.")
-public class shellsalt implements Command {
+@Help.Description("sotp creates the hash and salt for the (5 char) OTP.")
+public class sotp implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
-        if (shell.getElevation() == 2) {
-            String password = random(5);
-            String salt = random(10);
-            String hashed = auth.duthHash(password, salt, 10);
-            shell.setOTP(hashed, salt);
-            shell.writeln("duthHash(10) - " + hashed + " - " + salt);
-        }else{
-            shell.writeln("Can't shellsalt at elevation " + shell.getElevation());
-        }
+        String password = random(5);
+        String salt = random(10);
+        String hashed = auth.duthHash(password, salt, 10);
+        shell.setOTP(hashed, salt);
+        shell.writeln("duthHash(10) - " + hashed + " - " + salt);
     }
 
     private String random(int length) {

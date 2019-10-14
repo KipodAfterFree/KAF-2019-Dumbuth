@@ -51,8 +51,9 @@ public class auth implements Command {
             }
         } catch (Exception ignored) {
         }
-        // TODO change to false
-        return true;
+        // TODO - change to false before ctf
+        // Note what todo: after the CTF, you have to change the return to true to bypass auth.
+        return false;
     }
 
     static String duthHash(String secret, String salt, int rounds) {

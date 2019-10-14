@@ -22,8 +22,9 @@ public class nc implements Command {
                             shell.writeln("Authentication OK");
                             shell.writeln("Executing '" + split[2] + "' as :2 in shell '" + split[0] + "'");
                             int prev = quteshell.getElevation();
+                            quteshell.writeln();
                             quteshell.setElevation(2);
-                            quteshell.execute(split[2]);
+                            quteshell.read(split[2]);
                             quteshell.setElevation(prev);
                             quteshell.setOTP("", "");
                             shell.writeln("Execution complete.");
