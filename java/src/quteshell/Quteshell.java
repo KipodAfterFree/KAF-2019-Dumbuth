@@ -21,10 +21,12 @@ public class Quteshell {
             new FsstCr(),
             new Ls(),
             new Ln(),
+            new NC(),
             new Shellsalt(),
             new Shex(),
             new Touch(),
             new WFile(),
+            new Find(),
             new Cat(),
             new Elevate(),
             new Help(),
@@ -41,8 +43,15 @@ public class Quteshell {
     private Path.FileSystem fileSystem = null;
 
     //OTP
-    private String hashed, salt;
+    private String hash = "", salt = "";
 
+    public String getHash() {
+        return hash;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
 
     public Path.FileSystem getFileSystem() {
         return fileSystem;
@@ -53,13 +62,24 @@ public class Quteshell {
     }
 
     public void setOTP(String hash, String salt) {
-        this.hashed = hash;
+        this.hash = hash;
         this.salt = salt;
     }
 
     public void setElevation(int elevation) {
         this.elevation = elevation;
     }
+
+    public Quteshell siblings(ArrayList<Quteshell> siblings) {
+        this.siblings = siblings;
+        return this;
+    }
+
+    public ArrayList<Quteshell> getSiblings() {
+        return siblings;
+    }
+
+    private ArrayList<Quteshell> siblings;
 
     // ID & Host access
     private String id = random(14);

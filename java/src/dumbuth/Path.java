@@ -95,7 +95,7 @@ public class Path {
         }
 
         public FileSystem(Path... children) {
-            super("filesystem", new Path("default.txt", "This is the default file for FileSystem initialization."));
+            super("root", new Path("default.txt", "This is the default file for FileSystem initialization."));
             super.children.addAll(Arrays.asList(children));
         }
     }
