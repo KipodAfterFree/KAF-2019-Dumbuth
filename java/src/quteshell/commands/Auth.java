@@ -23,8 +23,10 @@ public class Auth extends Command {
                 String user = creds[0];
                 String password = creds[1];
                 if (authenticate(user, password)) {
-                    shell.writeln("Authenticated");
                     shell.setElevation(2);
+                    shell.writeln("╔═══════════════════════════════════╗");
+                    shell.writeln("║   Authenticated. Elevation: 2.    ║");
+                    shell.writeln("╚═══════════════════════════════════╝");
                 } else {
                     shell.writeln("Authentication failed");
                     shell.finish();

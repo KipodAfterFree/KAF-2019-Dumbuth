@@ -9,18 +9,26 @@ import quteshell.command.Elevation;
 public class Ls extends Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
-        if (shell.getFileSystem()!=null) {
+        if (shell.getFileSystem() != null) {
             String path = "/";
             if (arguments != null)
                 path = arguments;
             Path dir = shell.getFileSystem().find(path);
-            if (dir.getType() == Path.Type.Directory) {
-                for (Path child : dir.getChildren()) {
+            ls(shell, dir);
+        } else {
+            shell.writeln("Filesystem not mounted");
+        }
+    }
+
+    private void ls(Quteshell shell, Path path) {
+        if (path != null) {
+            if (path.getType() == Path.Type.Directory) {
+                for (Path child : path.getChildren()) {
                     shell.writeln(child.getName());
                 }
+            } else if (path.getType() == Path.Type.Link) {
+                ls(shell, path.getDestination());
             }
-        }else {
-            shell.writeln("Filesystem not mounted");
         }
     }
 }

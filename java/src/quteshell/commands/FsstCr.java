@@ -5,7 +5,7 @@ import quteshell.Quteshell;
 import quteshell.command.Command;
 import quteshell.command.Elevation;
 
-@Elevation(2)
+@Elevation(3)
 @Help.Description("FileSySTemCReationtool creates a filesystem and mounts it to the shell.")
 public class FsstCr extends Command {
 
