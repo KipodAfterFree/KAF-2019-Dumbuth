@@ -4,7 +4,7 @@ RUN apt-get update
 RUN mkdir -p /usr/share/man/man1
 # Install java
 RUN apt-get -y install openjdk-8-jre-headless ca-certificates-java --no-install-recommends --no-install-suggests
-# ENV JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+ENV JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 # Copy WebApp to /var/www/html
 COPY src /var/www/html
 # Change ownership of /var/www

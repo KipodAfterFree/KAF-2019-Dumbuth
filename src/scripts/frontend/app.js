@@ -21,7 +21,7 @@ function userinput(inputElement) {
 function passwordinput(inputElement) {
     if (user !== null) {
         inputElement.value = inputElement.value.toLowerCase();
-        inputElement.value = inputElement.value.replace(/[0-9]/g,"");
+        inputElement.value = inputElement.value.replace(/[^a-z]/g,"");
         if (user[1] === duth_hash(inputElement.value, user[2])) {
             page("authenticated");
             api("files/dumbuth/dumbuth.php", "mainframe", "checkpassword", {name: user[0], password: inputElement.value}, (success, result, error) => {

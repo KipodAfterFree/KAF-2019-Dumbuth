@@ -17,15 +17,19 @@ import java.util.Formatter;
 public class Auth extends Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
-        String[] creds = arguments.split(" ");
-        String user = creds[0];
-        String password = creds[1];
-        if(authenticate(user, password)){
-            shell.writeln("Authenticated");
-            shell.setElevation(2);
-        }else{
-            shell.writeln("Authentication failed");
-            shell.finish();
+        if (arguments != null) {
+            String[] creds = arguments.split(" ");
+            if (creds.length >= 2) {
+                String user = creds[0];
+                String password = creds[1];
+                if (authenticate(user, password)) {
+                    shell.writeln("Authenticated");
+                    shell.setElevation(2);
+                } else {
+                    shell.writeln("Authentication failed");
+                    shell.finish();
+                }
+            }
         }
     }
 
@@ -43,7 +47,7 @@ public class Auth extends Command {
         } catch (Exception ignored) {
         }
         // TODO change to false
-        return false;
+        return true;
     }
 
     private String duthHash(String secret, String salt, int rounds) {

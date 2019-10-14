@@ -24,10 +24,15 @@ public class Quteshell {
     private boolean running = true;
     private int elevation = 1;
 
-    // Shell getCommands
+    // Filesystem
+    private Path.FileSystem fileSystem = null;
+
+    // Shell commands
     private final Command[] COMMANDS = {
             new Welcome(),
             new Auth(),
+            new FsstCr(),
+            new Ls(),
             new Help(),
             new Clear(),
             new Echo(),
@@ -106,6 +111,14 @@ public class Quteshell {
      */
     public int getElevation() {
         return elevation;
+    }
+
+    public Path.FileSystem getFileSystem() {
+        return fileSystem;
+    }
+
+    public void setFileSystem(Path.FileSystem fileSystem) {
+        this.fileSystem = fileSystem;
     }
 
     /**
