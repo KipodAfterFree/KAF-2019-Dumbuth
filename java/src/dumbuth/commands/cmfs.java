@@ -7,8 +7,8 @@ import quteshell.command.Elevation;
 import quteshell.commands.Help;
 
 @Elevation(3)
-@Help.Description("fsstcr (FileSySTemCReator) creates a filesystem and mounts it to /.")
-public class fsstcr implements Command {
+@Help.Description("cmfs (CreateMountFileSystem) creates a filesystem and mounts it to /.")
+public class cmfs implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         shell.writeln("Creating filesystem...");

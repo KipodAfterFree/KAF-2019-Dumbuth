@@ -17,8 +17,17 @@ public class wfile implements Command {
                 String[] args = arguments.split(" ", 2);
                 if (args.length == 2) {
                     Path file = shell.getFileSystem().find(args[0]);
-                    if (file.getType() == Path.Type.File)
-                    file.setContents(args[1]);
+                    if (file!=null) {
+                        if (file.getType() == Path.Type.File) {
+                            file.setContents(args[1]);
+                        } else {
+                            shell.writeln("Not a file");
+                        }
+                    }else {
+                        shell.writeln("File does not exist");
+                    }
+                }else{
+                    shell.writeln("Missing arguments");
                 }
             } else {
                 shell.writeln("Missing arguments");

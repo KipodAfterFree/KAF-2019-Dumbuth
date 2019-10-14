@@ -63,6 +63,7 @@ public class Path {
     public Path find(String name) {
         while (name.startsWith("/"))
             name = name.substring(1);
+        if (name.length() == 0) return this;
         String[] split = name.split("/", 2);
         for (Path child : children) {
             if (child.name.equals(split[0])) {
@@ -72,7 +73,7 @@ public class Path {
                 return child;
             }
         }
-        return this;
+        return null;
     }
 
     public enum Type {

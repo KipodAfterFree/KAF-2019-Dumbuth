@@ -18,7 +18,7 @@ public class Quteshell {
     private final Command[] COMMANDS = {
             new Welcome(),
             new auth(),
-            new fsstcr(),
+            new cmfs(),
             new ls(),
             new ln(),
             new nc(),

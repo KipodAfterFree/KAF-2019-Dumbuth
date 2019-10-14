@@ -16,16 +16,14 @@ public class touch implements Command {
                 String[] levels = arguments.split("/");
                 if (levels.length > 0) {
                     Path to = new Path(levels[levels.length - 1], "");
-                    String dirPath = "";
-                    for (int i = 0; i < levels.length - 1; i++) {
-                        if (dirPath.length() > 0)
-                            dirPath += "/";
-                        dirPath += levels[i];
-                    }
-                    Path dir = shell.getFileSystem().find(dirPath);
-                    if (dir.getType() == Path.Type.Directory) {
-                        dir.getChildren().add(to);
-                        shell.writeln("File created");
+                    Path fileDirectory = shell.getFileSystem().find(arguments.substring(0, arguments.length() - (levels[levels.length - 1].length() + 1)));
+                    if(fileDirectory!=null){
+                        if (fileDirectory.getType() == Path.Type.Directory) {
+                            fileDirectory.getChildren().add(to);
+                            shell.writeln("File created");
+                        }
+                    }else{
+                        shell.writeln("Directory does not exist");
                     }
                 }
             } else {

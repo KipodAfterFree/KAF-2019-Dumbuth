@@ -12,25 +12,26 @@ public class ls implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         if (shell.getFileSystem() != null) {
-            String path = "/";
+            Path dir = shell.getFileSystem();
             if (arguments != null)
-                path = arguments;
-            Path dir = shell.getFileSystem().find(path);
-            ls(shell, dir);
+                dir = dir.find(arguments);
+            if (dir != null) {
+                ls(shell, dir);
+            } else {
+                shell.writeln("Path does not exist");
+            }
         } else {
             shell.writeln("Filesystem not mounted");
         }
     }
 
     private void ls(Quteshell shell, Path path) {
-        if (path != null) {
-            if (path.getType() == Path.Type.Directory) {
-                for (Path child : path.getChildren()) {
-                    shell.writeln(child.getName());
-                }
-            } else if (path.getType() == Path.Type.Link) {
-                ls(shell, path.getDestination());
+        if (path.getType() == Path.Type.Directory) {
+            for (Path child : path.getChildren()) {
+                shell.writeln(child.getName());
             }
+        } else {
+            shell.writeln("Not a directory");
         }
     }
 }

@@ -13,7 +13,7 @@ public class elevate implements Command {
         shell.write("Elevating to level 3");
         for (int i = 0;i<3;i++){
             try{
-                Thread.sleep(1500);
+                Thread.sleep(200);
             }catch (InterruptedException ignored){
 
             }

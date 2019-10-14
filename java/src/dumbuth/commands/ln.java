@@ -14,25 +14,29 @@ public class ln implements Command {
         if (shell.getFileSystem() != null) {
             if (arguments != null) {
                 String[] paths = arguments.split(" ");
-                if (paths.length > 1) {
+                if (paths.length == 2) {
                     String[] levels = paths[1].split("/");
-                    if (levels.length>0) {
+                    if (levels.length > 0) {
                         Path from = shell.getFileSystem().find(paths[0]);
-                        Path to = from.createLink(levels[levels.length - 1]);
-                        String dirPath = "";
-                        for (int i = 0; i < levels.length - 1; i++) {
-                            if (dirPath.length() > 0)
-                                dirPath += "/";
-                            dirPath += levels[i];
-                        }
-                        Path dir = shell.getFileSystem().find(dirPath);
-                        if (dir.getType() == Path.Type.Directory) {
-                            dir.getChildren().add(to);
-                            shell.writeln(paths[0] + "->" + paths[1]);
+                        if (from != null) {
+                            Path to = from.createLink(levels[levels.length - 1]);
+                            Path linkDirectory = shell.getFileSystem().find(paths[1].substring(0, paths[1].length() - (levels[levels.length - 1].length() + 1)));
+                            if (linkDirectory!=null) {
+                                if (linkDirectory.getType() == Path.Type.Directory) {
+                                    linkDirectory.getChildren().add(to);
+                                    shell.writeln(paths[0] + "->" + paths[1]);
+                                } else {
+                                    shell.writeln("Destination exists already");
+                                }
+                            }else {
+                                shell.writeln("Destination does not exist");
+                            }
+                        } else {
+                            shell.writeln("Origin does not exist");
                         }
                     }
                 } else {
-                    shell.writeln("ln requires 2 arguments");
+                    shell.writeln("Missing arguments");
                 }
             } else {
                 shell.writeln("Missing arguments");

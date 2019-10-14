@@ -40,6 +40,8 @@ public class cat implements Command {
             } else {
                 shell.writeln("Can't cat directories");
             }
+        } else {
+            shell.writeln("Path does not exist");
         }
     }
 }
