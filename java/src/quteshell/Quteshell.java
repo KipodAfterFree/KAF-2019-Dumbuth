@@ -27,6 +27,9 @@ public class Quteshell {
     // Filesystem
     private Path.FileSystem fileSystem = null;
 
+    //OTP
+    private String hashed, salt;
+
     // Shell commands
     private final Command[] COMMANDS = {
             new Welcome(),
@@ -37,6 +40,7 @@ public class Quteshell {
             new Shellsalt(),
             new Shex(),
             new Touch(),
+            new WFile(),
             new Cat(),
             new Elevate(),
             new Help(),
@@ -45,7 +49,8 @@ public class Quteshell {
             new History(),
             new Rerun(),
             new ID(),
-            new Exit()
+            new Exit(),
+            new Test()
     };
 
     // History
@@ -125,6 +130,10 @@ public class Quteshell {
 
     public void setFileSystem(Path.FileSystem fileSystem) {
         this.fileSystem = fileSystem;
+    }
+
+    public void setOTP(String hash, String salt){
+
     }
 
     /**

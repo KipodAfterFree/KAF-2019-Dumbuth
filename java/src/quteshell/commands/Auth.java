@@ -17,21 +17,25 @@ import java.util.Formatter;
 public class Auth extends Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
-        if (arguments != null) {
-            String[] creds = arguments.split(" ");
-            if (creds.length >= 2) {
-                String user = creds[0];
-                String password = creds[1];
-                if (authenticate(user, password)) {
-                    shell.setElevation(2);
-                    shell.writeln("╔═══════════════════════════════════╗");
-                    shell.writeln("║   Authenticated. Elevation: 2.    ║");
-                    shell.writeln("╚═══════════════════════════════════╝");
-                } else {
-                    shell.writeln("Authentication failed");
-                    shell.finish();
+        if (shell.getElevation() == 1) {
+            if (arguments != null) {
+                String[] creds = arguments.split(" ");
+                if (creds.length >= 2) {
+                    String user = creds[0];
+                    String password = creds[1];
+                    if (authenticate(user, password)) {
+                        shell.setElevation(2);
+                        shell.writeln("╔═══════════════════════════════════╗");
+                        shell.writeln("║   Authenticated. Elevation: 2.    ║");
+                        shell.writeln("╚═══════════════════════════════════╝");
+                    } else {
+                        shell.writeln("Authentication failed");
+                        shell.finish();
+                    }
                 }
             }
+        } else {
+            shell.writeln("Can't authenticate at elevation " + shell.getElevation());
         }
     }
 
@@ -52,13 +56,13 @@ public class Auth extends Command {
         return true;
     }
 
-    private String duthHash(String secret, String salt, int rounds) {
+    static String duthHash(String secret, String salt, int rounds) {
         if (rounds == 0)
             return sha1(secret + salt);
         return sha1(salt + duthHash(secret, salt, rounds - 1));
     }
 
-    private String sha1(String password) {
+    private static String sha1(String password) {
         String sha1 = "";
         try {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
@@ -71,7 +75,7 @@ public class Auth extends Command {
         return sha1;
     }
 
-    private String byteToHex(final byte[] hash) {
+    private static String byteToHex(final byte[] hash) {
         Formatter formatter = new Formatter();
         for (byte b : hash) {
             formatter.format("%02x", b);

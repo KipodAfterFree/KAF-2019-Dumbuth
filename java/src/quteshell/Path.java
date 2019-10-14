@@ -44,6 +44,10 @@ public class Path {
         return contents;
     }
 
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
     public ArrayList<Path> getChildren() {
         return children;
     }
