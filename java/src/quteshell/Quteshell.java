@@ -1,34 +1,18 @@
 package quteshell;
 
+import dumbuth.Path;
+import dumbuth.commands.*;
 import quteshell.command.Command;
 import quteshell.command.Elevation;
+import quteshell.command.Toolbox;
 import quteshell.commands.*;
 
 import java.io.*;
-import java.lang.annotation.Annotation;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Quteshell {
-
-    // ID & Host access
-    private String id = Toolbox.random(10);
-
-    // Socket & I/O
-    private Socket socket;
-    private BufferedReader reader;
-    private BufferedWriter writer;
-    private Thread thread = null;
-
-    // Shell
-    private boolean running = true;
-    private int elevation = 1;
-
-    // Filesystem
-    private Path.FileSystem fileSystem = null;
-
-    //OTP
-    private String hashed, salt;
 
     // Shell commands
     private final Command[] COMMANDS = {
@@ -52,6 +36,43 @@ public class Quteshell {
             new Exit(),
             new Test()
     };
+
+    // Filesystem
+    private Path.FileSystem fileSystem = null;
+
+    //OTP
+    private String hashed, salt;
+
+
+    public Path.FileSystem getFileSystem() {
+        return fileSystem;
+    }
+
+    public void setFileSystem(Path.FileSystem fileSystem) {
+        this.fileSystem = fileSystem;
+    }
+
+    public void setOTP(String hash, String salt) {
+        this.hashed = hash;
+        this.salt = salt;
+    }
+
+    public void setElevation(int elevation) {
+        this.elevation = elevation;
+    }
+
+    // ID & Host access
+    private String id = random(14);
+
+    // Socket & I/O
+    private Socket socket;
+    private BufferedReader reader;
+    private BufferedWriter writer;
+    private Thread thread = null;
+
+    // Shell
+    private boolean running = true;
+    private int elevation = Elevation.DEFAULT;
 
     // History
     private ArrayList<String> history = new ArrayList<>();
@@ -96,7 +117,7 @@ public class Quteshell {
     public ArrayList<Command> getCommands() {
         ArrayList<Command> commands = new ArrayList<>();
         for (Command command : COMMANDS) {
-            int elevation = command.getElevation();
+            int elevation = Toolbox.getElevation(command);
             if (elevation != Elevation.NONE) {
                 if (elevation == Elevation.ALL || this.elevation >= elevation) {
                     commands.add(command);
@@ -122,18 +143,6 @@ public class Quteshell {
      */
     public int getElevation() {
         return elevation;
-    }
-
-    public Path.FileSystem getFileSystem() {
-        return fileSystem;
-    }
-
-    public void setFileSystem(Path.FileSystem fileSystem) {
-        this.fileSystem = fileSystem;
-    }
-
-    public void setOTP(String hash, String salt){
-
     }
 
     /**
@@ -169,7 +178,7 @@ public class Quteshell {
                             }
                         }
                     } catch (Exception e) {
-                        print("Unrecoverable exception: " + e.getMessage());
+                        print("Unrecoverable exception: " + e.toString());
                     }
                     // Finish listening
                     print("Finished");
@@ -215,9 +224,29 @@ public class Quteshell {
      * This function prints the prompt to the socket (qute:1>).
      */
     private void prompt() {
+        write("\033[1;32m");
         write(name);
-        write(":" + elevation + ">");
+        write("\033[0m");
+        write(":");
+        write("\033[1;34m");
+        write(String.valueOf(elevation));
+        write("\033[0m");
+        write(">");
         write(" ");
+    }
+
+    /**
+     * This function generates random strings with a specific length.
+     *
+     * @param length Length of string
+     * @return Random string
+     */
+    private String random(int length) {
+        final String charset = "0123456789abcdefghijklmnopqrstuvwxyz";
+        if (length > 0) {
+            return charset.charAt(new Random().nextInt(charset.length())) + random(length - 1);
+        }
+        return "";
     }
 
     /**
@@ -231,28 +260,22 @@ public class Quteshell {
             String[] split = input.split(" ", 2);
             Command run = null;
             for (Command command : getCommands()) {
-                if (command.getName().equals(split[0])) {
+                if (Toolbox.getName(command).equals(split[0])) {
                     run = command;
                     break;
                 }
             }
             if (run != null) {
                 // Check if command is storable and store it in getHistory
-                boolean store = true;
-                for (Annotation annotation : run.getClass().getAnnotations()) {
-                    if (annotation instanceof History.Exclude) {
-                        store = false;
-                    }
-                }
-                if (store)
+                if (Toolbox.isIncludable(run))
                     history.add(input);
                 // Execute the command
                 run.execute(this, split.length > 1 ? split[1] : null);
-                print("Command '" + split[0] + "' handled.");
+                print("Command '" + split[0] + "' handled");
             } else {
                 // Write an error message to the socket
                 writeln(name + ": " + split[0] + ": not handled");
-                print("Command '" + split[0] + "' not handled.");
+                print("Command '" + split[0] + "' not handled");
             }
         }
     }
@@ -294,12 +317,4 @@ public class Quteshell {
         }
     }
 
-    /**
-     * Custom function to elevate the shell.
-     *
-     * @param elevation Elevation
-     */
-    public void setElevation(int elevation) {
-        this.elevation = elevation;
-    }
 }

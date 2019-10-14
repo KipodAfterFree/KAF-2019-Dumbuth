@@ -1,13 +1,14 @@
-package quteshell.commands;
+package dumbuth.commands;
 
-import quteshell.Path;
+import dumbuth.Path;
 import quteshell.Quteshell;
 import quteshell.command.Command;
 import quteshell.command.Elevation;
+import quteshell.commands.Help;
 
 @Elevation(3)
 @Help.Description("WriteFILE is a command that takes args=[file, contents] and writes contents to file.")
-public class WFile extends Command {
+public class WFile implements Command {
 
     @Override
     public void execute(Quteshell shell, String arguments) {

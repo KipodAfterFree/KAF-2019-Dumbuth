@@ -1,9 +1,10 @@
-package quteshell.commands;
+package dumbuth.commands;
 
 import org.json.JSONArray;
 import quteshell.Quteshell;
 import quteshell.command.Command;
 import quteshell.command.Elevation;
+import quteshell.commands.Help;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -14,7 +15,7 @@ import java.util.Formatter;
 
 @Elevation(1)
 @Help.Description("The auth command is used with two args, user and password, to authenticate.")
-public class Auth extends Command {
+public class Auth implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         if (shell.getElevation() == 1) {

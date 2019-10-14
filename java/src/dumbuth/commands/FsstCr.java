@@ -1,13 +1,14 @@
-package quteshell.commands;
+package dumbuth.commands;
 
-import quteshell.Path;
+import dumbuth.Path;
 import quteshell.Quteshell;
 import quteshell.command.Command;
 import quteshell.command.Elevation;
+import quteshell.commands.Help;
 
 @Elevation(3)
 @Help.Description("FileSySTemCReationtool creates a filesystem and mounts it to the shell.")
-public class FsstCr extends Command {
+public class FsstCr implements Command {
 
     @Override
     public void execute(Quteshell shell, String arguments) {

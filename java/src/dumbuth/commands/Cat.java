@@ -1,12 +1,12 @@
-package quteshell.commands;
+package dumbuth.commands;
 
-import quteshell.Path;
+import dumbuth.Path;
 import quteshell.Quteshell;
 import quteshell.command.Command;
 import quteshell.command.Elevation;
 
 @Elevation(2)
-public class Cat extends Command {
+public class Cat implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         try {
