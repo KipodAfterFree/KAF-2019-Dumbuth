@@ -9,8 +9,8 @@ import quteshell.commands.History;
 
 @Elevation(3)
 @Exclude
-@Help.Description("shex runs the command you give it as a passthrough.")
-public class Shex implements Command {
+@Help.Description("shex runs the command given as arguments.\ne.g. 'shex echo Hi'")
+public class shex implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         shell.execute(arguments);

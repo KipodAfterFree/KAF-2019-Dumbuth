@@ -4,9 +4,11 @@ import dumbuth.Path;
 import quteshell.Quteshell;
 import quteshell.command.Command;
 import quteshell.command.Elevation;
+import quteshell.commands.Help;
 
 @Elevation(2)
-public class Cat implements Command {
+@Help.Description("cat reads a file and outputs it to console.\ne.g. 'cat /default.txt'")
+public class cat implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         try {

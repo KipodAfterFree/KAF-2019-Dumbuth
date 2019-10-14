@@ -7,8 +7,8 @@ import quteshell.command.Elevation;
 import quteshell.commands.Help;
 
 @Elevation(3)
-@Help.Description("The touch command creates a new file. args=[file]")
-public class Touch implements Command {
+@Help.Description("touch creates a new file.\ne.g. 'touch myfile.txt'")
+public class touch implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         if (shell.getFileSystem() != null) {

@@ -7,8 +7,8 @@ import quteshell.command.Elevation;
 import quteshell.commands.Help;
 
 @Elevation(2)
-@Help.Description("Lists all files in a directory (including subdirs")
-public class Find implements Command {
+@Help.Description("find prints a list of all the files in all directories.\ne.g. 'find /' or 'find files'")
+public class find implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         if (shell.getElevation() == 2) {

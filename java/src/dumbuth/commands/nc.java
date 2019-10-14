@@ -6,18 +6,18 @@ import quteshell.command.Elevation;
 import quteshell.commands.Help;
 
 @Elevation(2)
-@Help.Description("The NetCat command takes as args=[ShellID, OTP, Command], runs command as :2 in ShellID.\nRequires the correct OneTimePassword!")
-public class NC implements Command {
+@Help.Description("nc (NetCat) connects to given ShellID with a given OTP, then runs the given command as :2.\ne.g. 'nc ShellID OTP Command' or 'nc vy4eqeamoglrqt wkcxl echo Hi!'")
+public class nc implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         String[] split = arguments.split(" ", 3);
-        if (split.length > 2) {
+        if (split.length == 3) {
             for (Quteshell quteshell : shell.getSiblings()) {
                 if (quteshell.getID().equals(split[0])) {
                     shell.write("\033[1;31m");
                     shell.writeln("Shell found!");
                     shell.writeln("Connected to shell, authenticating...");
-                    if (quteshell.getHash().equals(Auth.duthHash(split[1], quteshell.getSalt(), 10))) {
+                    if (quteshell.getHash().equals(auth.duthHash(split[1], quteshell.getSalt(), 10))) {
                         shell.writeln("Authentication OK");
                         shell.writeln("Executing '" + split[2] + "' as :2 in shell '" + split[0] + "'");
                         int prev = quteshell.getElevation();

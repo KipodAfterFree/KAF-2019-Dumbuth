@@ -7,8 +7,8 @@ import quteshell.command.Elevation;
 import quteshell.commands.Help;
 
 @Elevation(3)
-@Help.Description("The ln command creates a file link in the file system args=[src, dest]")
-public class Ln implements Command {
+@Help.Description("ln creates a symbolic link for a file.\ne.g. 'ln source destination' or 'ln /default.txt /files/link.txt'")
+public class ln implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         if (shell.getFileSystem() != null) {

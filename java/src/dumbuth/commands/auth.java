@@ -14,8 +14,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 @Elevation(1)
-@Help.Description("The auth command is used with two args, user and password, to authenticate.")
-public class Auth implements Command {
+@Help.Description("auth is used to authenticate, and if authenticated elevates you to :2\ne.g. 'auth user password'")
+public class auth implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         if (shell.getElevation() == 1) {

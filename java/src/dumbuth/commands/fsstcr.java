@@ -7,15 +7,14 @@ import quteshell.command.Elevation;
 import quteshell.commands.Help;
 
 @Elevation(3)
-@Help.Description("FileSySTemCReationtool creates a filesystem and mounts it to the shell.")
-public class FsstCr implements Command {
-
+@Help.Description("fsstcr (FileSySTemCReator) creates a filesystem and mounts it to /.")
+public class fsstcr implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
         shell.writeln("Creating filesystem...");
         Path.FileSystem fileSystem = Path.FileSystem.createDefault();
         shell.writeln("Mounting filesystem...");
         shell.setFileSystem(fileSystem);
-        shell.writeln("Mounted to /");
+        shell.writeln("Mounted on /, as root/");
     }
 }
