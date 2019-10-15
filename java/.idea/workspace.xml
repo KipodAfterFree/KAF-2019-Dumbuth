@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="460f6cc6-4e93-4b83-adb9-0d16dcacdc83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/server.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dumbuth/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dumbuth/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dumbuth/commands/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dumbuth/commands/nc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dumbuth/commands/nc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dumbuth/commands/shellsalt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dumbuth/commands/sotp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/quteshell/Quteshell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/quteshell/Quteshell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../start.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,15 +27,15 @@
         <counts>
           <entry key="dummy" value="68" />
           <entry key="gitignore" value="11" />
-          <entry key="java" value="15513" />
-          <entry key="txt" value="57" />
+          <entry key="java" value="15667" />
+          <entry key="txt" value="66" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="6" />
-          <entry key="JAVA" value="15513" />
-          <entry key="PLAIN_TEXT" value="130" />
+          <entry key="JAVA" value="15667" />
+          <entry key="PLAIN_TEXT" value="139" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -62,7 +56,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dumbuth/commands/find.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
@@ -83,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dumbuth/commands/auth.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="16" column="115" selection-start-line="16" selection-start-column="115" selection-end-line="16" selection-end-column="115" />
+            <state>
+              <caret line="48" column="36" lean-forward="true" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,7 +220,6 @@
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/dumbuth/commands/Find.java" />
         <option value="$PROJECT_DIR$/src/dumbuth/commands/NC.java" />
-        <option value="$PROJECT_DIR$/src/dumbuth/commands/auth.java" />
         <option value="$PROJECT_DIR$/src/dumbuth/commands/fsstcr.java" />
         <option value="$PROJECT_DIR$/src/dumbuth/commands/shellsalt.java" />
         <option value="$PROJECT_DIR$/src/dumbuth/commands/shex.java" />
@@ -242,6 +235,7 @@
         <option value="$PROJECT_DIR$/src/dumbuth/commands/sotp.java" />
         <option value="$PROJECT_DIR$/src/dumbuth/commands/nc.java" />
         <option value="$PROJECT_DIR$/src/dumbuth/commands/find.java" />
+        <option value="$PROJECT_DIR$/src/dumbuth/commands/auth.java" />
       </list>
     </option>
   </component>
@@ -251,7 +245,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="683" />
     <option name="width" value="683" />
     <option name="height" value="768" />
   </component>
@@ -382,7 +377,7 @@
       <workItem from="1570965052942" duration="4992000" />
       <workItem from="1570970465465" duration="19559000" />
       <workItem from="1571045504875" duration="29000" />
-      <workItem from="1571045581737" duration="33168000" />
+      <workItem from="1571045581737" duration="34523000" />
     </task>
     <task id="LOCAL-00001" summary="Progress">
       <created>1570981314883</created>
@@ -447,14 +442,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571087834441</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Finished?">
+      <created>1571092233383</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1571092233383</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57951000" />
+    <option name="totallyTimeSpent" value="59306000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="768" extended-state="6" />
+    <frame x="0" y="0" width="1366" height="768" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26136363" />
@@ -517,7 +519,8 @@
     <MESSAGE value="Progress" />
     <MESSAGE value="Working with exploit" />
     <MESSAGE value="Robusted the FS management" />
-    <option name="LAST_COMMIT_MESSAGE" value="Robusted the FS management" />
+    <MESSAGE value="Finished?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished?" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/Exported_JAR.xml">
@@ -757,16 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dumbuth/commands/auth.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="16" column="115" selection-start-line="16" selection-start-column="115" selection-end-line="16" selection-end-column="115" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dumbuth/commands/nc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -781,6 +774,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dumbuth/commands/auth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="48" column="36" lean-forward="true" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
