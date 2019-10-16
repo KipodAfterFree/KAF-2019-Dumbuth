@@ -8,7 +8,7 @@ file_put_contents(__DIR__ . DIRECTORY_SEPARATOR . "users.json", json_encode($use
 function duth_user_create($name, $password, $salt)
 {
     $user = [];
-    echo "$name, $password";
+    echo "$name, $password\n";
     array_push($user, $name);
     array_push($user, duth_hash($password, $salt));
     array_push($user, $salt);
