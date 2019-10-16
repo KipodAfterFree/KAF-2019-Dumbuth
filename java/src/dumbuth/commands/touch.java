@@ -13,16 +13,18 @@ public class touch implements Command {
     public void execute(Quteshell shell, String arguments) {
         if (shell.getFileSystem() != null) {
             if (arguments != null) {
+                if (!arguments.startsWith("/"))
+                    arguments = "/" + arguments;
                 String[] levels = arguments.split("/");
                 if (levels.length > 0) {
                     Path to = new Path(levels[levels.length - 1], "");
                     Path fileDirectory = shell.getFileSystem().find(arguments.substring(0, arguments.length() - (levels[levels.length - 1].length() + 1)));
-                    if(fileDirectory!=null){
+                    if (fileDirectory != null) {
                         if (fileDirectory.getType() == Path.Type.Directory) {
                             fileDirectory.getChildren().add(to);
                             shell.writeln("File created");
                         }
-                    }else{
+                    } else {
                         shell.writeln("Directory does not exist");
                     }
                 }
