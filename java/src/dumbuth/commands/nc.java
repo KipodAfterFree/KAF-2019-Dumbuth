@@ -6,7 +6,7 @@ import quteshell.command.Elevation;
 import quteshell.commands.Help;
 
 @Elevation(2)
-@Help.Description("nc (NetCat) connects to given ShellID with a given OTP, then runs the given command as :2.\ne.g. 'nc ShellID OTP Command' or 'nc vy4eqeamoglrqt wkcxl echo Hi!'")
+@Help.Description("nc (NetCat) connects to given ShellID with a given OTP, then runs the given command as this shell's elevation.\ne.g. 'nc ShellID OTP Command' or 'nc vy4eqeamoglrqt wkcxl echo Hi!'")
 public class nc implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
@@ -20,10 +20,10 @@ public class nc implements Command {
                         shell.writeln("Connected to shell, authenticating...");
                         if (quteshell.getHash().equals(auth.duthHash(split[1], quteshell.getSalt(), 10))) {
                             shell.writeln("Authentication OK");
-                            shell.writeln("Executing '" + split[2] + "' as :2 in shell '" + split[0] + "'");
+                            shell.writeln("Executing '" + split[2] + "' as :" + shell.getElevation() + " in shell '" + split[0] + "'");
                             int prev = quteshell.getElevation();
                             quteshell.writeln();
-                            quteshell.setElevation(2);
+                            quteshell.setElevation(shell.getElevation());
                             quteshell.read(split[2]);
                             quteshell.setElevation(prev);
                             quteshell.setOTP("", "");

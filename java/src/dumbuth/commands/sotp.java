@@ -8,11 +8,11 @@ import quteshell.commands.Help;
 import java.util.Random;
 
 @Elevation(2)
-@Help.Description("sotp creates the hash and salt for the (5 char) OTP.")
+@Help.Description("sotp creates the hash and salt for the (4 char) OTP.")
 public class sotp implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
-        String password = random(5);
+        String password = random(4);
         String salt = random(10);
         String hashed = auth.duthHash(password, salt, 10);
         shell.setOTP(hashed, salt);
