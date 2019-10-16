@@ -23,7 +23,6 @@ public class Quteshell {
             new ln(),
             new nc(),
             new sotp(),
-            new shex(),
             new touch(),
             new wfile(),
             new find(),

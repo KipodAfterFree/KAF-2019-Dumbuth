@@ -87,11 +87,7 @@ public class Path {
         public static FileSystem createDefault() {
             return new FileSystem(
                     new Path("exceptions",
-                            new Path("soe.txt", "StackOverflowException"),
-                            new Path("npe.txt", "NullPointerException"),
-                            new Path("dbze.txt", "DividedByZeroException"),
-                            new Path("nsae.txt", "NoSuchAlgorithmException"),
-                            new Path("cnfe.txt", "ClassNotFoundException")
+                            new Path("soe.txt", "StackOverflowException")
                     ),
                     new Path("documents",
                             new Path("ShukyPrivateDontTouch",

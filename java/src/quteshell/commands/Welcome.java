@@ -9,10 +9,11 @@ import quteshell.command.Elevation;
 public class Welcome implements Command {
     @Override
     public void execute(Quteshell shell, String arguments) {
-        shell.writeln("╔═══════════════════════════════════╗");
-        shell.writeln("║        Welcome to Dumbuth!        ║");
-        shell.writeln("║ You can type 'help' for commands. ║");
-        shell.writeln("║    Use 'auth' to authenticate.    ║");
-        shell.writeln("╚═══════════════════════════════════╝");
+        shell.writeln("╔═══════════════════════════════════════╗");
+        shell.writeln("║          Welcome to Dumbuth!          ║");
+        shell.writeln("║   You can type 'help' for commands.   ║");
+        shell.writeln("║ We are sure we cannot get exceptions. ║");
+        shell.writeln("║      Use 'auth' to authenticate.      ║");
+        shell.writeln("╚═══════════════════════════════════════╝");
     }
 }
