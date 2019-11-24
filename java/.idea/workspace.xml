@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="460f6cc6-4e93-4b83-adb9-0d16dcacdc83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/server.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/files/dumbuth/dumbuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/files/dumbuth/dumbuth.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -387,7 +385,7 @@
       <workItem from="1571236471854" duration="313000" />
       <workItem from="1571237919509" duration="73000" />
       <workItem from="1571239891865" duration="1285000" />
-      <workItem from="1574610721973" duration="1285000" />
+      <workItem from="1574610721973" duration="1834000" />
     </task>
     <task id="LOCAL-00001" summary="Progress">
       <created>1570981314883</created>
@@ -477,7 +475,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62803000" />
+    <option name="totallyTimeSpent" value="63352000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="6" />

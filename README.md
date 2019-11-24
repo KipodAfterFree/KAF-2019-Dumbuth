@@ -23,8 +23,8 @@ import re
 
 CHARS = "abcdefghijklmnopqrstuvwxyz"
 HOST = "localhost"
-PORT_A = 8000
-PORT_B = 5387
+PORT_A = 1110
+PORT_B = 1111
 
 def recursive(hash, salt, target, current = ""):
 	if len(current) < target:
