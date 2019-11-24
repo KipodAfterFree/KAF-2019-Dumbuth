@@ -14,7 +14,7 @@ RUN chmod 775 /var/www/ -R
 # Copy server.jar to /home/
 COPY java/out/server.jar /home/server.jar
 # Expose server port
-EXPOSE 5387
+EXPOSE 8000
 # Copy startup script
 COPY start.sh /start.sh
 RUN chmod 777 /start.sh

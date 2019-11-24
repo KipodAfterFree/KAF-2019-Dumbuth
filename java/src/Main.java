@@ -5,8 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
 
-    //    private static final int PORT = 5386;
-    private static final int PORT = 5387;
+    private static final int PORT = 8000;
     public static final ArrayList<Quteshell> quteshells = new ArrayList<>();
 
     private static boolean listening = true;
