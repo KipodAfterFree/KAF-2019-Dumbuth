@@ -20,7 +20,7 @@ api("mainframe", function ($action, $parameters) {
             foreach ($users as $user) {
                 if ($user[0] === $parameters->name)
                     if ($user[1] === duth_hash($parameters->password, $user[2])) {
-                        return [true, "<p>Authentication OK</p><!--For mainframe authentication use 'nc host.kaf.sh 1111'-->"];
+                        return [true, "<p>Authentication OK</p><!--For mainframe authentication use 'nc ctf.kaf.sh 1111'-->"];
                     } else {
                         return [false, null];
                     }
